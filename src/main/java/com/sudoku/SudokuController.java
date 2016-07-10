@@ -1,5 +1,7 @@
 package com.sudoku;
 
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +14,10 @@ public class SudokuController {
 		return new SudokuBoard();
 	}
 
-	@RequestMapping(value = "/sudoku", method = RequestMethod.PUT)
-	public String setMovement() {
-		return "";
+	@RequestMapping(value = "/sudoku", method = RequestMethod.PUT, produces = {
+			MediaType.APPLICATION_JSON_VALUE }, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public SudokuMoveOutput setMovement(@RequestBody SudokuMoveInput sudokuInput) {
+		return new SudokuMoveOutput();
 	}
 
 }
